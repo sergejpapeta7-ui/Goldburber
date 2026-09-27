@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gold Barber</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background-color: #0a0a0a;
+            font-family: 'Montserrat', Arial, sans-serif;
+            color: #e8c874;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 40px;
+            background-color: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            display: block;
+            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.5));
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .main-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 35px;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: #d4af37;
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #ffd700, transparent);
+            transition: width 0.4s ease, left 0.4s ease;
+        }
+
+        .main-nav a:hover {
+            color: #ffd700;
+        }
+
+        .main-nav a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        /* ===== СЕКЦИЯ С КНОПКАМИ ===== */
+        .services {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 40px;
+        }
+
+        .service-card {
+            position: relative;
+            height: 420px;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            text-decoration: none;
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            transition: border-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+            display: block;
+            background-color: #111;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.6s ease;
+            z-index: 1;
+        }
+
+        /* Фон "Прически" — сохранённое тобой фото: hair.jpg */
+        .service-card.hair::before {
+            background-image: url('hair.jpg');
+        }
+
+        /* Фон "Бороды" — атмосферное фото с бородой */
+        .service-card.beard::before {
+            background-image: url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1200&q=80');
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.9) 100%);
+            z-index: 2;
+            transition: background 0.4s ease;
+        }
+
+        .service-card:hover {
+            border-color: #ffd700;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.35);
+        }
+
+        .service-card:hover::before {
+            transform: scale(1.08);
+        }
+
+        .service-card:hover::after {
+            background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.8) 100%);
+        }
+
+        .service-content {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .service-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 900;
+            margin: 0 0 10px;
+            background: linear-gradient(135deg, #b8860b 0%, #ffd700 40%, #fff3a0 50%, #ffd700 60%, #b8860b 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .service-content p {
+            margin: 0;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #e8c874;
+            font-weight: 300;
+        }
+
+        .service-content .arrow {
+            margin-top: 15px;
+            color: #ffd700;
+            font-size: 22px;
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover .arrow {
+            transform: translateX(8px);
+        }
+
+        /* ===== АДАПТИВ ===== */
+        @media (max-width: 900px) {
+            .services {
+                grid-template-columns: 1fr;
+                padding: 0 20px;
+                gap: 20px;
+            }
+            .service-card {
+                height: 320px;
+            }
+            .service-content h2 {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+            .main-nav ul {
+                gap: 20px;
+            }
+            .main-nav a {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <img src="i.png" alt="Логотип Gold Barber">
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="onasindex.html">О нас</a></li>
+                <li><a href="contactindex.html">Контакты</a></li>
+                <li><a href="https://n2473497.yclients.ru">Записаться</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="services">
+        <a href="prichaindex.html" class="service-card hair">
+            <div class="service-content">
+                <h2>Прически</h2>
+                <p>Стрижки под форму головы</p>
+                <span class="arrow">→</span>
+            </div>
+        </a>
+
+        <a href="borodaindex.html" class="service-card beard">
+            <div class="service-content">
+                <h2>Бороды</h2>
+                <p>Контуры, бритва, полотенце</p>
+                <span class="arrow">→</span>
+            </div>
+        </a>
+    </section>
+
+</body>
+</html>

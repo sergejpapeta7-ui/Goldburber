@@ -1,0 +1,249 @@
+Вот обновлённый `contactindex.html` в едином стиле Gold Barber.
+
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gold Barber — Контакты</title>
+    <link rel="icon" type="image/png" href="i.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            background-color: #0a0a0a;
+            min-height: 100vh;
+            color: #e8c874;
+            line-height: 1.7;
+            background-image: radial-gradient(circle at 50% 0%, #1a1508 0%, #0a0a0a 70%);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 40px;
+            background-color: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.5));
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover { transform: scale(1.05); }
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 35px;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: #d4af37;
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #ffd700, transparent);
+            transition: width 0.4s ease, left 0.4s ease;
+        }
+
+        .main-nav a:hover { color: #ffd700; }
+        .main-nav a:hover::after { width: 100%; left: 0; }
+
+        .main-nav a.active { color: #ffd700; }
+        .main-nav a.active::after { width: 100%; left: 0; }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 70px 30px 40px;
+            flex: 1;
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 1.2s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 900;
+            margin: 0 0 20px;
+            background: linear-gradient(135deg, #b8860b 0%, #ffd700 40%, #fff3a0 50%, #ffd700 60%, #b8860b 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+            line-height: 1.2;
+        }
+
+        .divider {
+            width: 120px;
+            height: 2px;
+            margin: 0 auto 50px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            position: relative;
+        }
+
+        .divider::before {
+            content: '✦';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ffd700;
+            background: #0a0a0a;
+            padding: 0 10px;
+            font-size: 14px;
+        }
+
+        .phone {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffd700;
+            letter-spacing: 2px;
+            margin-bottom: 50px;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .phone a {
+            color: #ffd700;
+            text-decoration: none;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .phone a:hover {
+            color: #fff3a0;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+        }
+
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .socials a {
+            display: inline-block;
+            padding: 14px 40px;
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            border-radius: 50px;
+            text-decoration: none;
+            color: #d4af37;
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.35s ease;
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .socials a:hover {
+            color: #0a0a0a;
+            background: linear-gradient(135deg, #b8860b, #ffd700);
+            border-color: #ffd700;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
+            transform: translateY(-3px);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            margin-top: 60px;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #8a7330;
+        }
+
+        @media (max-width: 700px) {
+            .header { flex-direction: column; gap: 15px; padding: 15px 20px; }
+            .main-nav ul { gap: 20px; flex-wrap: wrap; justify-content: center; }
+            h1 { font-size: 34px; }
+            .container { padding: 40px 18px 30px; }
+            .phone { font-size: 24px; }
+            .socials { flex-direction: column; align-items: center; }
+            .socials a { width: 100%; max-width: 280px; text-align: center; }
+        }
+
+        @media (max-width: 400px) {
+            .main-nav ul { gap: 14px; }
+            .main-nav a { font-size: 12px; letter-spacing: 1px; }
+            h1 { font-size: 28px; }
+            .phone { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <img src="i.png" alt="Логотип Gold Barber">
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="onasindex.html">О нас</a></li>
+                <li><a href="contactindex.html" class="active">Контакты</a></li>
+                <li><a href="https://n2473497.yclients.ru">Записаться</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>Контакты</h1>
+        <div class="divider"></div>
+
+        <div class="phone">
+            <a href="tel:89301666606">8 930 166-66-06</a>
+        </div>
+
+        <div class="socials">
+            <a href="https://vk.ru/gold_barber69" target="_blank">ВКонтакте</a>
+            <a href="https://www.instagram.com/gold_barber_69?stkn=MWdvYzEycTA3eHFwMw==" target="_blank">Instagram</a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        Gold Barber © 2026
+    </footer>
+
+</body>
+</html>
+```
